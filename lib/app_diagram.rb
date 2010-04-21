@@ -17,8 +17,7 @@ class AppDiagram
     STDERR.print "Loading application environment\n" if @options.verbose
     load_environment
 
-    STDERR.print "Loading application classes\n" if @options.verbose
-    load_classes
+    STDERR.print "Loading application classes as we go\n" if @options.verbose
   end
 
   # Print diagram

@@ -23,28 +23,16 @@ class ModelsDiagram < AppDiagram
     files = Dir.glob("app/models/**/*.rb")
     files += Dir.glob("vendor/plugins/**/app/models/*.rb") if @options.plugins_models    
     files -= @options.exclude
-    files.each do |f| 
-      process_class extract_class_name(f).constantize
+    files.each do |f|
+      begin
+        process_class extract_class_name(f).constantize
+      rescue Exception
+        puts "Warning: exception #{$!} raised while trying to load #{f} model class"
+      end
     end
   end 
 
   private
-
-  # Load model classes
-  def load_classes
-    begin
-      disable_stdout
-      files = Dir.glob("app/models/**/*.rb")
-      files += Dir.glob("vendor/plugins/**/app/models/*.rb") if @options.plugins_models
-      files -= @options.exclude
-      files.each {|m| require m }
-      enable_stdout
-    rescue LoadError
-      enable_stdout
-      print_error "model classes"
-      raise
-    end
-  end  # load_classes
 
   # Process a model class
   def process_class(current_class)

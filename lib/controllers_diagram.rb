@@ -30,27 +30,15 @@ class ControllersDiagram < AppDiagram
       class_name = extract_class_name(f)
       # ApplicationController's file is 'application.rb' in Rails < 2.3
       class_name += 'Controller' if class_name == 'Application'
-      process_class class_name.constantize
+      begin
+        process_class class_name.constantize
+      rescue Exception
+        puts "Warning: exception #{$!} raised while trying to load #{f} controller class"
+      end
     end 
   end # generate
 
   private
-
-  # Load controller classes
-  def load_classes
-    begin
-      disable_stdout
-      # ApplicationController must be loaded first
-      require APP_CONTROLLER
-      files = Dir.glob("app/controllers/**/*_controller.rb") - @options.exclude
-      files.each {|c| require c }
-      enable_stdout
-    rescue LoadError
-      enable_stdout
-      print_error "controller classes"
-      raise
-    end
-  end # load_classes
 
   # Proccess a controller class
   def process_class(current_class)
