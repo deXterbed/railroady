@@ -33,7 +33,7 @@ class ControllersDiagram < AppDiagram
       begin
         process_class class_name.constantize
       rescue Exception
-        puts "Warning: exception #{$!} raised while trying to load #{f} controller class"
+        STDERR.print "Warning: exception #{$!} raised while trying to load controller class #{f}"
       end
     end 
   end # generate

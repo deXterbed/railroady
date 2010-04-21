@@ -27,7 +27,7 @@ class ModelsDiagram < AppDiagram
       begin
         process_class extract_class_name(f).constantize
       rescue Exception
-        puts "Warning: exception #{$!} raised while trying to load #{f} model class"
+        STDERR.print "Warning: exception #{$!} raised while trying to load model class #{f}\n"
       end
     end
   end 
