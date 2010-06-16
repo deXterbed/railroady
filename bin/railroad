@@ -14,7 +14,6 @@
 # (at your option) any later version.
 #
 
-require 'rubygems'
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require File.dirname(__FILE__) + '/../lib/version'
 
@@ -48,7 +47,6 @@ elsif options.command == 'controllers'
   diagram = ControllersDiagram.new options
 elsif options.command == 'aasm'
   diagram = AasmDiagram.new(options)
-  diagram.process
 else
   STDERR.print "#{APP_HUMAN_NAME} v#{RailRoad::VERSION::STRING}\n" +
     "Error: You must supply a command\n" +
@@ -56,6 +54,7 @@ else
   exit 1
 end
 
+diagram.process
 diagram.generate
 
 Dir.chdir(old_dir)
