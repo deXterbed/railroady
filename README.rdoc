@@ -23,7 +23,7 @@ controller diagrams are best processed using neato.
 Common options:
     -b, --brief                      Generate compact diagram
                                        (no attributes nor methods)
-    -e, --exclude file1[,fileN]      Exclude given files
+    -e, --exclude file1[,fileN]      Exclude given files (can take a glob pattern)
     -i, --inheritance                Include inheritance relations
     -l, --label                      Add a label with diagram information
                                        (type, date, migration, version)
