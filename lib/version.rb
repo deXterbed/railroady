@@ -1,3 +1,4 @@
+require 'yaml'
 module RailRoad
   module VERSION #:nodoc:
     if File.exist?('../VERSION.yml')

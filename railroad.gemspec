@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{railroad}
-  s.version = "0.6.0"
+  s.version = "0.7.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Peter Hoeg", "Javier Smaldone"]
-  s.date = %q{2010-04-21}
+  s.date = %q{2010-06-16}
   s.default_executable = %q{railroad}
   s.description = %q{A DOT diagram generator for Ruby on Rail applications}
   s.email = ["peter@hoeg.com", "p.hoeg@northwind.sg", "javier@smaldone.com.ar"]
@@ -37,17 +37,25 @@ Gem::Specification.new do |s|
      "lib/options_struct.rb",
      "lib/version.rb",
      "spec/app_diagram_spec.rb",
+     "spec/file_fixture/app/models/dummy1.rb",
+     "spec/file_fixture/app/models/dummy2.rb",
+     "spec/file_fixture/app/models/sub-dir/sub_dummy.rb",
+     "spec/models_diagram_spec.rb",
      "spec/railroad_spec.rb",
      "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/peterhoeg/RailRoad}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.7}
   s.summary = %q{A DOT diagram generator for Ruby on Rail applications}
   s.test_files = [
-    "spec/railroad_spec.rb",
-     "spec/app_diagram_spec.rb",
+    "spec/app_diagram_spec.rb",
+     "spec/file_fixture/app/models/dummy1.rb",
+     "spec/file_fixture/app/models/dummy2.rb",
+     "spec/file_fixture/app/models/sub-dir/sub_dummy.rb",
+     "spec/models_diagram_spec.rb",
+     "spec/railroad_spec.rb",
      "spec/spec_helper.rb"
   ]
 
@@ -55,7 +63,7 @@ Gem::Specification.new do |s|
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
     else
     end
   else

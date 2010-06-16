@@ -6,19 +6,36 @@
 
 require 'diagram_graph'
 
+# camelize and constantize methods brought over from active_support
+class String
+  def camelize(first_letter_in_uppercase = true)
+    if first_letter_in_uppercase
+      self.to_s.gsub(/\/(.?)/) { "::" + $1.upcase }.gsub(/(^|_)(.)/) { $2.upcase }
+    else
+      self.first + self.camelize[1..-1]
+    end
+  end
+  def constantize
+     names = self.split('::')
+     names.shift if names.empty? || names.first.empty?
+  
+     constant = Object
+     names.each do |name|
+       constant = constant.const_defined?(name) ? constant.const_get(name) : constant.const_missing(name)
+     end
+     constant
+   end
+end
+
 # Root class for RailRoad diagrams
 class AppDiagram
 
-  def initialize(options)
+  def initialize(options = OptionsStruct.new)
     @options = options
     @graph = DiagramGraph.new
     @graph.show_label = @options.label
-
-    STDERR.print "Loading application environment\n" if @options.verbose
-    load_environment
-
-    STDERR.print "Loading application classes as we go\n" if @options.verbose
   end
+  
 
   # Print diagram
   def print
@@ -45,7 +62,26 @@ class AppDiagram
     end
   end # print
 
+  def process
+    load_environment
+  end
+
   private 
+  
+  # Load Rails application's environment
+  def load_environment
+    STDERR.print "Loading application environment\n" if @options.verbose
+    begin
+      disable_stdout
+      require "config/environment"
+      enable_stdout
+    rescue LoadError
+      enable_stdout
+      print_error "application environment"
+      raise
+    end
+    STDERR.print "Loading application classes as we go\n" if @options.verbose
+  end
 
   # Prevents Rails application from writing to STDOUT
   def disable_stdout
@@ -62,21 +98,10 @@ class AppDiagram
   # Print error when loading Rails application
   def print_error(type)
     STDERR.print "Error loading #{type}.\n  (Are you running " +
-                 "#{APP_NAME} on the aplication's root directory?)\n\n"
+                 "#{@options.app_name} on the aplication's root directory?)\n\n"
   end
 
-  # Load Rails application's environment
-  def load_environment
-    begin
-      disable_stdout
-      require "config/environment"
-      enable_stdout
-    rescue LoadError
-      enable_stdout
-      print_error "application environment"
-      raise
-    end
-  end
+
 
   # Extract class name from filename
   def extract_class_name(filename)

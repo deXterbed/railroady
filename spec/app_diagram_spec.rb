@@ -1,12 +1,17 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
+require 'app_diagram'
+require 'options_struct'
 
 describe AppDiagram do
-  describe 'extracting filenames' do
-    describe 'without namespaces' do
-      it 'should work with a simple name' do
-        ad = AppDiagram.new
-        ad.extract_class_name('app/models/test_this.rb').should == 'TestThis'
-      end
+  describe 'file name processing' do
+    it 'should extract a simple name' do
+      ad = AppDiagram.new
+      name = ad.instance_eval {extract_class_name('app/models/test_this.rb')}
+      name.should == 'TestThis'
     end
+    it 'should constantize a name' do
+      'String'.constantize.should == String
+    end
+      
   end
 end

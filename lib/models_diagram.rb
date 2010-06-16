@@ -9,7 +9,7 @@ require 'app_diagram'
 # RailRoad models diagram
 class ModelsDiagram < AppDiagram
 
-  def initialize(options)
+  def initialize(options = OptionsStruct.new)
     #options.exclude.map! {|e| "app/models/" + e}
     super options 
     @graph.diagram_type = 'Models'
@@ -20,10 +20,7 @@ class ModelsDiagram < AppDiagram
   # Process model files
   def generate
     STDERR.print "Generating models diagram\n" if @options.verbose
-    files = Dir.glob("app/models/**/*.rb")
-    files += Dir.glob("vendor/plugins/**/app/models/*.rb") if @options.plugins_models    
-    files -= @options.exclude
-    files.each do |f|
+    get_files.each do |f|
       begin
         process_class extract_class_name(f).constantize
       rescue Exception
@@ -31,6 +28,13 @@ class ModelsDiagram < AppDiagram
       end
     end
   end 
+
+  def get_files(prefix ='')
+    files = Dir.glob(prefix << "app/models/**/*.rb")
+    files += Dir.glob("vendor/plugins/**/app/models/*.rb") if @options.plugins_models
+    files -= Dir.glob(@options.exclude)
+    files
+  end
 
   private
 

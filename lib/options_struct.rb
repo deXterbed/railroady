@@ -11,7 +11,7 @@ class OptionsStruct < OpenStruct
 
   require 'optparse'
 
-  def initialize
+  def initialize(args={})
     init_options = { :all => false,
                      :brief => false,
                      :exclude => [],
@@ -30,13 +30,14 @@ class OptionsStruct < OpenStruct
                      :transitive => false,
                      :verbose => false,
                      :xmi => false,
-                     :command => '' }
-    super(init_options)
+                     :command => '',
+                     :app_name => 'railroad', :app_human_name => 'Railroad', :app_version =>'', :copyright =>'' }
+    super(init_options.merge(args))
   end # initialize
 
   def parse(args)
     @opt_parser = OptionParser.new do |opts|
-      opts.banner = "Usage: #{APP_NAME} [options] command"
+      opts.banner = "Usage: #{self.app_name} [options] command"
       opts.separator ""
       opts.separator "Common options:"
       opts.on("-b", "--brief", "Generate compact diagram", 
@@ -112,9 +113,9 @@ class OptionsStruct < OpenStruct
         STDOUT.print "#{opts}\n"
         exit
       end
-      opts.on("--version", "Show version and copyright") do
-        STDOUT.print "#{APP_HUMAN_NAME} version #{APP_VERSION.join('.')}\n\n" +
-                     "#{COPYRIGHT}\nThis is free software; see the source " +
+      opts.on("--version", "Show version and copyright") do 
+        STDOUT.print"#{self.app_human_name} version #{self.app_version}\n\n" +
+                     "#{self.copyright}\nThis is free software; see the source " +
                      "for copying conditions.\n\n"
         exit
       end
