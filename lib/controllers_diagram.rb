@@ -13,7 +13,7 @@ class ControllersDiagram < AppDiagram
   # application_controller.rb
   APP_CONTROLLER = File.exist?('app/controllers/application.rb') ? 'app/controllers/application.rb' : 'app/controllers/application_controller.rb'
 
-  def initialize(options)
+  def initialize(options = OptionsStruct.new)
     #options.exclude.map! {|e| "app/controllers/" + e}
     super options
     @graph.diagram_type = 'Controllers'
@@ -22,8 +22,7 @@ class ControllersDiagram < AppDiagram
   # Process controller files
   def generate
     STDERR.print "Generating controllers diagram\n" if @options.verbose
-
-    files = Dir.glob("app/controllers/**/*_controller.rb") - @options.exclude
+    files = get_files
     # only add APP_CONTROLLER if it isn't already included from the glob above
     files << APP_CONTROLLER unless files.include? APP_CONTROLLER
     files.each do |f|
@@ -37,6 +36,12 @@ class ControllersDiagram < AppDiagram
       end
     end 
   end # generate
+
+  def get_files(prefix ='')
+    files = !@options.specify.empty? ? Dir.glob(@options.specify) : Dir.glob(prefix << "app/controllers/**/*_controller.rb")
+    files -= Dir.glob(@options.exclude)
+    files
+  end
 
   private
 
