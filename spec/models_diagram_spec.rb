@@ -25,5 +25,27 @@ describe ModelsDiagram do
       files.size.should == 2
     end
 
+    it 'should include only specific file' do
+      options = OptionsStruct.new(:specify => ['spec/file_fixture/app/models/sub-dir/sub_dummy.rb'])
+      md = ModelsDiagram.new(options)
+      files = md.get_files("spec/file_fixture/")
+      files.size.should == 1
+    end
+
+    it 'should include only specified files' do
+      options = OptionsStruct.new(:specify => ['spec/file_fixture/app/models/{dummy1.rb,sub-dir/sub_dummy.rb}'])
+      md = ModelsDiagram.new(options)
+      files = md.get_files("spec/file_fixture/")
+      files.size.should == 2
+    end
+
+    it 'should include only specified files and exclude specified files' do
+      options = OptionsStruct.new(:specify => ['spec/file_fixture/app/models/{dummy1.rb,sub-dir/sub_dummy.rb}'],
+                                  :exclude => ['spec/file_fixture/app/models/sub-dir/sub_dummy.rb'])
+      md = ModelsDiagram.new(options)
+      files = md.get_files("spec/file_fixture/")
+      files.size.should == 1
+    end
+
   end
 end
