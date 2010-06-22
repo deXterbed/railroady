@@ -30,7 +30,7 @@ class ModelsDiagram < AppDiagram
   end 
 
   def get_files(prefix ='')
-    files = Dir.glob(prefix << "app/models/**/*.rb")
+    files = !@options.specify.empty? ? Dir.glob(@options.specify) : Dir.glob(prefix << "app/models/**/*.rb")
     files += Dir.glob("vendor/plugins/**/app/models/*.rb") if @options.plugins_models
     files -= Dir.glob(@options.exclude)
     files
