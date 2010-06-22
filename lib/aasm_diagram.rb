@@ -11,7 +11,7 @@ require 'app_diagram'
 # Diagram for Acts As State Machine
 class AasmDiagram < AppDiagram
 
-  def initialize(options)
+  def initialize(options = OptionsStruct.new)
     #options.exclude.map! {|e| e = "app/models/" + e}
     super options 
     @graph.diagram_type = 'Models'
@@ -22,24 +22,25 @@ class AasmDiagram < AppDiagram
   # Process model files
   def generate
     STDERR.print "Generating AASM diagram\n" if @options.verbose
-    files = Dir.glob("app/models/**/*.rb") 
-    files += Dir.glob("vendor/plugins/**/app/models/*.rb") if @options.plugins_models
-    files -= @options.exclude
-    files.each do |f| 
+    get_files.each do |f|
       process_class extract_class_name(f).constantize
     end
   end
   
+  def get_files(prefix ='')
+    files = !@options.specify.empty? ? Dir.glob(@options.specify) : Dir.glob(prefix << "app/models/**/*.rb")
+    files += Dir.glob("vendor/plugins/**/app/models/*.rb") if @options.plugins_models
+    files -= Dir.glob(@options.exclude)
+    files
+  end
+
   private
   
   # Load model classes
   def load_classes
     begin
       disable_stdout
-      files = Dir.glob("app/models/**/*.rb")
-      files += Dir.glob("vendor/plugins/**/app/models/*.rb") if @options.plugins_models
-      files -= @options.exclude                  
-      files.each {|m| require m }
+      get_files.each {|m| require m }
       enable_stdout
     rescue LoadError
       enable_stdout
