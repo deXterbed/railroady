@@ -23,7 +23,10 @@ controller diagrams are best processed using neato.
 Common options:
     -b, --brief                      Generate compact diagram
                                        (no attributes nor methods)
-    -e, --exclude file1[,fileN]      Exclude given files (can take a glob pattern)
+    -s, --specify file1[,fileN]      Specify given files only for the diagram
+                                       (can take a glob pattern)
+    -e, --exclude file1[,fileN]      Exclude given files
+                                       (can take a glob pattern)
     -i, --inheritance                Include inheritance relations
     -l, --label                      Add a label with diagram information
                                        (type, date, migration, version)
@@ -134,7 +137,7 @@ RailRoad has been tested with the following Ruby and Rails versions
 
 == Rails
 * 1.1.6 to 1.2.3
-* 2.3.2
+* 2.3.2 to 2.3.5
 
 There are no additional requirements (nevertheless, all your Rails application
 requirements must be installed).
