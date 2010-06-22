@@ -14,6 +14,7 @@ class OptionsStruct < OpenStruct
   def initialize(args={})
     init_options = { :all => false,
                      :brief => false,
+                     :specify => [],
                      :exclude => [],
                      :inheritance => false,
                      :join => false,
@@ -43,6 +44,9 @@ class OptionsStruct < OpenStruct
       opts.on("-b", "--brief", "Generate compact diagram", 
               "  (no attributes nor methods)") do |b|
         self.brief = b
+      end
+      opts.on("-s", "--specify file1[,fileN]", Array, "Specify only given files") do |list|
+        self.specify = list
       end
       opts.on("-e", "--exclude file1[,fileN]", Array, "Exclude given files") do |list|
         self.exclude = list
