@@ -1,6 +1,4 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-require 'controllers_diagram'
-require 'options_struct'
 
 describe ControllersDiagram do
   describe 'file processing' do

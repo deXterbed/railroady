@@ -6,7 +6,7 @@
 
 # AASM code provided by Ana Nelson (http://ananelson.com/)
 
-require 'app_diagram'
+require 'railroad/app_diagram'
 
 # Diagram for Acts As State Machine
 class AasmDiagram < AppDiagram

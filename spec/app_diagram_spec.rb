@@ -1,6 +1,4 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-require 'app_diagram'
-require 'options_struct'
 
 describe AppDiagram do
   describe 'file name processing' do

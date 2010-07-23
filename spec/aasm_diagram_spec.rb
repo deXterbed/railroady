@@ -1,6 +1,4 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-require 'aasm_diagram'
-require 'options_struct'
 
 describe AasmDiagram do
   describe 'file processing' do

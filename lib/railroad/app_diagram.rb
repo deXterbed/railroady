@@ -4,7 +4,7 @@
 # Copyright 2007-2008 - Javier Smaldone (http://www.smaldone.com.ar)
 # See COPYING for more details
 
-require 'diagram_graph'
+require 'railroad/diagram_graph'
 
 # camelize and constantize methods brought over from active_support
 class String
