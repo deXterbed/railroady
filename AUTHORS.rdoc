@@ -12,4 +12,5 @@ http://railroad.rubyforge.org
 * Peter Hoeg
 * John McCaffrey
 * David Jones
+* Mike Dalessio
 * and many testers...
