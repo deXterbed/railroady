@@ -101,20 +101,6 @@ class AppDiagram
                  "#{@options.app_name} on the aplication's root directory?)\n\n"
   end
 
-
-  # Load Rails application's environment
-  def load_environment
-    begin
-      disable_stdout
-      require "./config/environment"
-      enable_stdout
-    rescue LoadError
-      enable_stdout
-      print_error "application environment"
-      raise
-    end
-  end
-
   # Extract class name from filename
   def extract_class_name(filename)
     #filename.split('/')[2..-1].join('/').split('.').first.camelize
