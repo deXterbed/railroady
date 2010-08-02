@@ -26,6 +26,7 @@ class ModelsDiagram < AppDiagram
       rescue Exception
         STDERR.print "Warning: exception #{$!} raised while trying to load model class #{f}\n"
       end
+
     end
   end 
 
@@ -36,7 +37,18 @@ class ModelsDiagram < AppDiagram
     files
   end
 
-  private
+  # Load model classes
+  def load_classes
+    begin
+      disable_stdout
+      get_files.each {|m| require "./#{m}" }
+      enable_stdout
+    rescue LoadError
+      enable_stdout
+      print_error "model classes"
+      raise
+    end
+  end  # load_classes
 
   # Process a model class
   def process_class(current_class)
@@ -57,9 +69,9 @@ class ModelsDiagram < AppDiagram
 
         # Collect model's content columns
 
-	content_columns = current_class.content_columns
+        content_columns = current_class.content_columns
 	
-	if @options.hide_magic 
+        if @options.hide_magic 
           # From patch #13351
           # http://wiki.rubyonrails.org/rails/pages/MagicFieldNames
           magic_fields = [
@@ -130,7 +142,7 @@ class ModelsDiagram < AppDiagram
       assoc_name = assoc.name.to_s
     end 
 
-    if assoc.macro.to_s == 'has_one' 
+    if ['has_one', 'belongs_to'].include? assoc.macro.to_s
       assoc_type = 'one-one'
     elsif assoc.macro.to_s == 'has_many' && (! assoc.options[:through])
       assoc_type = 'one-many'

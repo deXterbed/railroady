@@ -86,7 +86,7 @@ class AppDiagram
   # Prevents Rails application from writing to STDOUT
   def disable_stdout
     @old_stdout = STDOUT.dup
-    STDOUT.reopen(PLATFORM =~ /mswin/ ? "NUL" : "/dev/null")
+    STDOUT.reopen(::RUBY_PLATFORM =~ /mswin/ ? "NUL" : "/dev/null")
   end
 
   # Restore STDOUT  
@@ -102,6 +102,18 @@ class AppDiagram
   end
 
 
+  # Load Rails application's environment
+  def load_environment
+    begin
+      disable_stdout
+      require "./config/environment"
+      enable_stdout
+    rescue LoadError
+      enable_stdout
+      print_error "application environment"
+      raise
+    end
+  end
 
   # Extract class name from filename
   def extract_class_name(filename)
