@@ -4,15 +4,15 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{railroad}
+  s.name = %q{tobias-railroad}
   s.version = "0.10.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Peter Hoeg", "Javier Smaldone"]
+  s.authors = ["Tobias Crawley", "Peter Hoeg", "Javier Smaldone"]
   s.date = %q{2010-09-23}
   s.default_executable = %q{railroad}
   s.description = %q{A DOT diagram generator for Ruby on Rail applications}
-  s.email = ["peter@hoeg.com", "p.hoeg@northwind.sg", "javier@smaldone.com.ar"]
+  s.email = ["tcrawley@gmail.com", "peter@hoeg.com", "p.hoeg@northwind.sg", "javier@smaldone.com.ar"]
   s.executables = ["railroad"]
   s.extra_rdoc_files = [
     "AUTHORS.rdoc",
@@ -51,7 +51,7 @@ Gem::Specification.new do |s|
      "spec/models_diagram_spec.rb",
      "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/peterhoeg/RailRoad}
+  s.homepage = %q{http://github.com/tobias/RailRoad}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}

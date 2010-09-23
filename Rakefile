@@ -4,11 +4,11 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "railroad"
+    gem.name = "tobias-railroad"
     gem.executables = "railroad"
-    gem.email = ['peter@hoeg.com', 'p.hoeg@northwind.sg', 'javier@smaldone.com.ar']
-    gem.homepage = "http://github.com/peterhoeg/RailRoad"
-    gem.authors = ["Peter Hoeg", "Javier Smaldone"]
+    gem.email = ['tcrawley@gmail.com', 'peter@hoeg.com', 'p.hoeg@northwind.sg', 'javier@smaldone.com.ar']
+    gem.homepage = "http://github.com/tobias/RailRoad"
+    gem.authors = ["Tobias Crawley", "Peter Hoeg", "Javier Smaldone"]
     gem.summary = "A DOT diagram generator for Ruby on Rail applications"
     gem.description = gem.summary
     gem.files = FileList["[A-Z]*", "{autotest,bin,lib,spec}/**/*", ".document"]
