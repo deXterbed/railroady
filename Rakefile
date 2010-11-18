@@ -4,12 +4,12 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "tobias-railroad"
-    gem.executables = "railroad"
-    gem.email = ['tcrawley@gmail.com', 'peter@hoeg.com', 'p.hoeg@northwind.sg', 'javier@smaldone.com.ar']
-    gem.homepage = "http://github.com/tobias/RailRoad"
-    gem.authors = ["Tobias Crawley", "Peter Hoeg", "Javier Smaldone"]
-    gem.summary = "A DOT diagram generator for Ruby on Rail applications"
+    gem.name = "railroady"
+    gem.executables = "railroady"
+    gem.email = ['conmotto@gmail.com', 'tcrawley@gmail.com', 'peter@hoeg.com', 'p.hoeg@northwind.sg', 'javier@smaldone.com.ar']
+    gem.homepage = "http://github.com/preston/railroady"
+    gem.authors = ["Preston Lee", "Tobias Crawley", "Peter Hoeg", "Javier Smaldone"]
+    gem.summary = "A DOT diagram generator for Ruby on Rail applications."
     gem.description = gem.summary
     gem.files = FileList["[A-Z]*", "{autotest,bin,lib,spec}/**/*", ".document"]
     gem.extra_rdoc_files = FileList["*.rdoc"]
@@ -20,25 +20,26 @@ rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
 
-require 'spec/rake/spectask'
-Spec::Rake::SpecTask.new(:spec) do |spec|
-  spec.libs << 'lib' << 'spec'
-  spec.spec_files = FileList['spec/**/*_spec.rb']
+require 'rspec'
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec) do |spec|
+#  spec.libs << 'lib' << 'rspec'
+  spec.pattern = FileList['rspec/**/*_spec.rb']
 end
 
-Spec::Rake::SpecTask.new(:rcov) do |spec|
-  spec.libs << 'lib' << 'spec'
-  spec.pattern = 'spec/**/*_spec.rb'
+RSpec::Core::RakeTask.new(:rcov) do |spec|
+#  spec.libs << 'lib' << 'rspec'
+  spec.pattern = 'rspec/**/*_spec.rb'
   spec.rcov = true
 end
 
 task :default => :spec
 
 require 'rake/rdoctask'
-require 'lib/railroad/version'
+require 'railroady/version'
 Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "railroad #{RailRoad::VERSION::STRING}"
+  rdoc.title = "railroady #{RailRoady::VERSION::STRING}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('CHANGELOG*')
   rdoc.rdoc_files.include('AUTHORS*')

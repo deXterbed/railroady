@@ -1,5 +1,9 @@
 = Changes
 
+== Version 0.9.0
+  - Forked from tobias-railroad on GitHub.
+  - Project rebranding to reflect Rails v3 support.
+
 == Version 0.8.0 (22 June 2010)
   - add --specify to specify only a few model/controller files as the opposite of --exclude
   - improve test coverage
@@ -98,7 +102,7 @@
 - Minor cosmetic changes.
 - New way to load classes, supporting subdirectories traversal.
   (Inspired in RAV, http://rav.rubyforge.org/)
-- RailRoad version included in diagrams' label.
+- RailRoady version included in diagrams' label.
 
 == Version 0.1.0 (apr 2 2007)
 - Initial release.
