@@ -3,6 +3,8 @@
 == Version 0.9.0
   - Forked from tobias-railroad on GitHub.
   - Project rebranding to reflect Rails v3 support.
+  - Adding railtie support for Rails 3 plugins.
+  - Adding rake tasks that are automatically included by Rails 3 applications.
 
 == Version 0.8.0 (22 June 2010)
   - add --specify to specify only a few model/controller files as the opposite of --exclude

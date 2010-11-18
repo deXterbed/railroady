@@ -11,7 +11,7 @@ begin
     gem.authors = ["Preston Lee", "Tobias Crawley", "Peter Hoeg", "Javier Smaldone"]
     gem.summary = "A DOT diagram generator for Ruby on Rail applications."
     gem.description = gem.summary
-    gem.files = FileList["[A-Z]*", "{autotest,bin,lib,spec}/**/*", ".document"]
+    gem.files = FileList["[A-Z]*", "{autotest,bin,lib,spec,tasks}/**/*", ".document"]
     gem.extra_rdoc_files = FileList["*.rdoc"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end

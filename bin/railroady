@@ -29,6 +29,9 @@ options = OptionsStruct.new({:app_name => APP_NAME, :app_human_name => APP_HUMAN
 
 options.parse ARGV
 
+# puts "OPTS!!!"
+# puts options
+
 old_dir = Dir.pwd
 
 Dir.chdir(options.root) if options.root != ''

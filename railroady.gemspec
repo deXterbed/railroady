@@ -36,7 +36,9 @@ Gem::Specification.new do |s|
     "lib/railroady/diagram_graph.rb",
     "lib/railroady/models_diagram.rb",
     "lib/railroady/options_struct.rb",
-    "lib/railroady/version.rb"
+    "lib/railroady/railtie.rb",
+    "lib/railroady/version.rb",
+    "tasks/railroady.rake"
   ]
   s.homepage = %q{http://github.com/preston/railroady}
   s.require_paths = ["lib"]
