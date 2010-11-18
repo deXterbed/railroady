@@ -31,7 +31,7 @@ This should generate four doc/*.svg files that can be opened in (most) web brows
 
 Alternatively, you may run the 'railroady' command-line program at the Rails application's root directory. You can redirect its output to a .dot file or pipe it to the dot or neato utilities to produce a graphic. Model diagrams are intended to be processed using dot and controller diagrams are best processed using neato.
 
-    railroad [options] command
+    railroady [options] command
  
 == Options
 
@@ -78,15 +78,15 @@ Other options:
 
 == Examples
 
-    railroad -o models.dot -M 
+    railroady -o models.dot -M 
       Produces a models diagram to the file 'models.dot'
-    railroad -a -i -o full_models.dot -M 
+    railroady -a -i -o full_models.dot -M 
       Models diagram with all classes showing inheritance relations
-    railroad -M | dot -Tsvg > models.svg
+    railroady -M | dot -Tsvg > models.svg
       Model diagram in SVG format
-    railroad -C | neato -Tpng > controllers.png
+    railroady -C | neato -Tpng > controllers.png
       Controller diagram in PNG format
-    railroad -h
+    railroady -h
       Shows usage help
 
 
@@ -120,39 +120,20 @@ Note: For viewing and editing SVG there is an excellent opensource tool
 called Inkscape (similar to Adobe Illustrator. For DOT processing you can
 also use Omnigraffle (on Mac OS X).
 
-= RailRoady as a rake task
+= Rake Tasks
 
-(Thanks to Thomas Ritz, http://www.galaxy-ritz.de ,for the code.)
+As of Preston Lee's Rails 3 modifications, including RailRoady as a project development dependency will automatically add a set of rake tasks to your project. Sweet! (Run `rake -T` to check them out.)
 
-In your Rails application, put the following rake tasks into 'lib/task/diagrams.rake':
-
-  namespace :doc do
-    namespace :diagram do
-      task :models do
-        sh "railroad -i -l -a -m -M | dot -Tsvg | sed 's/font-size:14.00/font-size:11.00/g' > doc/models.svg"
-      end
-  
-      task :controllers do
-        sh "railroad -i -l -C | neato -Tsvg | sed 's/font-size:14.00/font-size:11.00/g' > doc/controllers.svg"
-      end
-    end
-  
-    task :diagrams => %w(diagram:models diagram:controllers)
-  end
-  
-Then, 'rake doc:diagrams' produces 'doc/models.svg' and 'doc/controllers.svg'.
 
 = Requirements
 
 RailRoady has been tested with the following Ruby and Rails versions
 
 == Ruby
-* 1.8.5
-* 1.8.7
+* 1.9.2
 
 == Rails
-* 1.1.6 to 1.2.3
-* 2.3.2 to 2.3.5
+* 3.0.3
 
 There are no additional requirements (nevertheless, all your Rails application
 requirements must be installed).
@@ -162,7 +143,7 @@ from Graphviz.
 
 = Website and Project Home
 
-http://railroad.rubyforge.org
+http://github.com/preston/railroady
 
 = License
 
@@ -176,6 +157,7 @@ See LICENSE for details.
 
 Copyright (c) 2007-2008 Javier Smaldone
 Copyright (c) 2009 Peter Hoeg
+Copyright (c) 2010 Preston Lee
 
 See LICENSE for details.
 
