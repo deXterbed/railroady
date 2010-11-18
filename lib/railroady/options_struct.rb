@@ -32,7 +32,7 @@ class OptionsStruct < OpenStruct
                      :verbose => false,
                      :xmi => false,
                      :command => '',
-                     :app_name => 'railroad', :app_human_name => 'Railroad', :app_version =>'', :copyright =>'' }
+                     :app_name => 'railroady', :app_human_name => 'Railroady', :app_version =>'', :copyright =>'' }
     super(init_options.merge(args))
   end # initialize
 

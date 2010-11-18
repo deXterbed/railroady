@@ -17,13 +17,13 @@
 #
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-require 'railroad'
+require 'railroady'
 
-APP_NAME       = "railroad"
+APP_NAME       = "railroady"
 APP_HUMAN_NAME = "RailRoady"
 # APP_VERSION    = [RailRoady::VERSION::MAJOR, RailRoady::VERSION::MINOR, RailRoady::VERSION::PATCH]
 APP_VERSION    = RailRoady::VERSION::STRING
-COPYRIGHT      = "Copyright (C) 2007-2008 Javier Smaldone, 2009 Peter Hoeg"
+COPYRIGHT      = "Copyright (C) 2007-2008 Javier Smaldone, 2009 Peter Hoeg, 2010 Preston Lee"
 
 options = OptionsStruct.new({:app_name => APP_NAME, :app_human_name => APP_HUMAN_NAME, :app_version =>APP_VERSION, :copyright =>COPYRIGHT})
 

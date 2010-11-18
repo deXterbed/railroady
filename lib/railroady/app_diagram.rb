@@ -4,7 +4,7 @@
 # Copyright 2007-2008 - Javier Smaldone (http://www.smaldone.com.ar)
 # See COPYING for more details
 
-require 'railroad/diagram_graph'
+require 'railroady/diagram_graph'
 
 # camelize and constantize methods brought over from active_support
 class String
@@ -73,7 +73,8 @@ class AppDiagram
     STDERR.print "Loading application environment\n" if @options.verbose
     begin
       disable_stdout
-      require "config/environment"
+      l = File.join(Dir.pwd.to_s, 'config/environment')
+      require l
       enable_stdout
     rescue LoadError
       enable_stdout

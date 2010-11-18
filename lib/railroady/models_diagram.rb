@@ -4,7 +4,7 @@
 # Copyright 2007-2008 - Javier Smaldone (http://www.smaldone.com.ar)
 # See COPYING for more details
 
-require 'railroad/app_diagram'
+require 'railroady/app_diagram'
 
 # RailRoady models diagram
 class ModelsDiagram < AppDiagram
