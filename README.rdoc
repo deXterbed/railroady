@@ -4,7 +4,14 @@ RailRoady generates Rails 3 model and controller UML diagrams as cross-platform 
 
 Code is based on the original "railroad" gem, patched and maintained over the years. Lineage can be traced via GitHub.
 
-I (Preston Lee) am not trying to hijack Peter Hoeg or Javier's project, but rather create a dedicated, lean gem that can be used without major issue on Rails v3 projects. Rails v2 is not supported
+I (Preston Lee) am not trying to hijack Peter Hoeg or Javier's project, but rather create a dedicated, lean gem that can be used without major issue on Rails v3 projects. Rails v2 is not supported.
+
+= System Requirements
+
+You MUST have the the following utilities available at the command line.
+  * `dot` and `neato`. MacPorts users can install in via `sudo port install graphviz`.
+
+  * `sed`, which should already be available on all sane UNIX systems.
 
 = Usage
 
