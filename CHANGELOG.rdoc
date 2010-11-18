@@ -1,5 +1,12 @@
 = Changes
 
+== Version 0.11.2
+  - Bugfix for including gem version number in generated documents.
+  - Gem meta-data fixes.
+
+== Version 0.11.1
+  - Minor bug fixes.
+
 == Version 0.9.1
   - Removal of deprecated API call.
   - Documentation updates.

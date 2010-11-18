@@ -9,8 +9,8 @@ begin
     gem.email = ['conmotto@gmail.com', 'tcrawley@gmail.com', 'peter@hoeg.com', 'p.hoeg@northwind.sg', 'javier@smaldone.com.ar']
     gem.homepage = "http://github.com/preston/railroady"
     gem.authors = ["Preston Lee", "Tobias Crawley", "Peter Hoeg", "Javier Smaldone"]
-    gem.summary = "A DOT diagram generator for Ruby on Rail applications."
-    gem.description = gem.summary
+    gem.summary = "Ruby on Rails 3 model and controller UML class diagram generator."
+    gem.description = "Ruby on Rails 3 model and controller UML class diagram generator. Originally based on the 'railroad' plugin and contributions of many others. (`sudo port install graphviz` before use!)"
     gem.files = FileList["[A-Z]*", "{autotest,bin,lib,spec,tasks}/**/*", ".document"]
     gem.extra_rdoc_files = FileList["*.rdoc"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
