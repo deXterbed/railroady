@@ -8,11 +8,11 @@ require 'railroady/diagram_graph'
 
 # camelize and constantize methods brought over from active_support
 class String
-  def camelize(first_letter_in_uppercase = true)
-    if first_letter_in_uppercase
+  def camelize(first_letter = :upper)
+    if first_letter == :upper
       self.to_s.gsub(/\/(.?)/) { "::" + $1.upcase }.gsub(/(^|_)(.)/) { $2.upcase }
     else
-      self.first + self.camelize[1..-1]
+      self.to_s[0].chr.downcase + self.camelize[1..-1]
     end
   end
   def constantize
