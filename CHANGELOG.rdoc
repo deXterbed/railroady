@@ -1,5 +1,9 @@
 = Changes
 
+== Version 0.11.3
+  - Merge in bug fix and test cases from Tim Harvey. (Thanks!)
+  - Documentation updates.
+
 == Version 0.11.2
   - Bugfix for including gem version number in generated documents.
   - Gem meta-data fixes.
