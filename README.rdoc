@@ -133,7 +133,7 @@ RailRoady has been tested with the following Ruby and Rails versions
 * 1.9.2
 
 == Rails
-* 3.0.3
+* 3.0.3+
 
 There are no additional requirements (nevertheless, all your Rails application
 requirements must be installed).
@@ -143,11 +143,11 @@ from Graphviz.
 
 = Website and Project Home
 
-http://github.com/preston/railroady
+http://railroady.prestonlee.com
 
 = License
 
-RailRoady is distributed  under the terms of the GNU General Public License
+RailRoady is distributed under the terms of the GNU General Public License
 as published by the Free Software Foundation; either version 2 of the 
 License, or (at your option) any later version.
 

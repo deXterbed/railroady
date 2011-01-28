@@ -1,10 +1,9 @@
-= Author
-Javier Smaldone - (javier |at| smaldone |dot| com |dot| ar)
 
 = Project site
-http://railroad.rubyforge.org
+http://railroady.prestonlee.com
 
-= Contributors (in order of appearance)
+= Authors/Contributors (in order of appearance)
+* Javier Smaldone (javier |at| smaldone |dot| com |dot| ar)
 * Elliot Smith
 * Juan Ignacio Pumarino
 * Hajime Baba
@@ -13,5 +12,6 @@ http://railroad.rubyforge.org
 * John McCaffrey
 * David Jones
 * Mike Dalessio
-* Preston Lee
-* and many testers...
+* Preston Lee (http://prestonlee.com)
+
+And of course, many thanks to the many patch submitters and testers that make this possible!
