@@ -9,7 +9,7 @@
  
 # Returns an absolute path for the following file.
 def full_path(name = 'test.txt')
-  f = File.join(Rails.root.to_s, 'doc', name)
+  f = File.join(Rails.root.to_s.gsub(' ', '\ '), 'doc', name)
   f.to_s
 end
   
