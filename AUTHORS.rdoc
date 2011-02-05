@@ -13,5 +13,7 @@ http://railroady.prestonlee.com
 * David Jones
 * Mike Dalessio
 * Preston Lee (http://prestonlee.com)
+* Tim Harvey
+* Atli Christiansen
 
 And of course, many thanks to the many patch submitters and testers that make this possible!

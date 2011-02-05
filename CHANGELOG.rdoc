@@ -1,5 +1,8 @@
 = Changes
 
+== Version 1.0.1
+  - Patch to fix bug for projects with spaces in the path. (Thanks, Tim Harvey!)
+
 == Version 1.0.0
   - After months of community testing, we're finally at 1.0.0. Woohoo! This release is 100% compatible with the last pre-1.0.0 release.
   - Patch for model classes not in the root module namespace.
