@@ -15,5 +15,7 @@ http://railroady.prestonlee.com
 * Preston Lee (http://prestonlee.com)
 * Tim Harvey
 * Atli Christiansen
+* John Bintz (http://www.coswellproductions.com/)
+
 
 And of course, many thanks to the many patch submitters and testers that make this possible!

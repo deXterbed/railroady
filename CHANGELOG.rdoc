@@ -1,5 +1,9 @@
 = Changes
 
+== Version 1.0.2
+
+  - Merged in John Bintz's patch to properly strip leading "::" prefixes from class names.
+
 == Version 1.0.1
   - Patch to fix bug for projects with spaces in the path. (Thanks, Tim Harvey!)
 
