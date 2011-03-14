@@ -42,7 +42,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = %q{http://github.com/preston/railroady}
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.7}
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{Ruby on Rails 3 model and controller UML class diagram generator.}
 
   if s.respond_to? :specification_version then
