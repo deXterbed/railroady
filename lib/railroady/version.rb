@@ -1,7 +1,7 @@
 require 'yaml'
 module RailRoady
   module VERSION #:nodoc:
-	f = File.join(File.dirname(__FILE__), '..', '..', 'VERSION.yml')
+    f = File.join(File.dirname(__FILE__), '..', '..', 'VERSION.yml')
     if File.exist?(f)
       config = YAML.load(File.read(f))
       MAJOR = config[:major]
