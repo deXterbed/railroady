@@ -54,9 +54,12 @@ class ModelsDiagram < AppDiagram
       else 
         node_type = 'model'
 
-        # Collect model's content columns
-
-        content_columns = current_class.content_columns
+        # Collect model's content columns or all columns if all_columns flag is passed
+        if @options.all_columns
+          columns = current_class.columns
+        else
+          columns = current_class.content_columns
+        end
 	
         if @options.hide_magic 
           # From patch #13351
@@ -67,12 +70,12 @@ class ModelsDiagram < AppDiagram
           "rgt", "quote", "template"
           ]
           magic_fields << current_class.table_name + "_count" if current_class.respond_to? 'table_name' 
-          content_columns = current_class.content_columns.select {|c| ! magic_fields.include? c.name}
+          columns = current_class.content_columns.select {|c| ! magic_fields.include? c.name}
         else
-          content_columns = current_class.content_columns
+          columns = current_class.content_columns
         end
         
-        content_columns.each do |a|
+        columns.each do |a|
           content_column = a.name
           content_column += ' :' + a.type.to_s unless @options.hide_types
           node_attribs << content_column
