@@ -16,6 +16,7 @@ You MUST have the the following utilities available at the command line.
 = Mac users
 
 MacPorts users can install in via `sudo port install graphviz`.
+Brew user can install via `brew install graphviz`.
 
 = Ubuntu users
 
