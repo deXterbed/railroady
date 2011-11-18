@@ -71,16 +71,15 @@ class ModelsDiagram < AppDiagram
           ]
           magic_fields << current_class.table_name + "_count" if current_class.respond_to? 'table_name' 
           columns = current_class.content_columns.select {|c| ! magic_fields.include? c.name}
-        else
-          columns = current_class.content_columns
         end
-        
+
         columns.each do |a|
-          content_column = a.name
-          content_column += ' :' + a.type.to_s unless @options.hide_types
-          node_attribs << content_column
+          column = a.name
+          column += ' :' + a.type.to_s unless @options.hide_types
+          node_attribs << column
         end
       end
+
       @graph.add_node [node_type, current_class.name, node_attribs]
       generated = true
       # Process class associations
