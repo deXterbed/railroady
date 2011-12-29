@@ -9,7 +9,7 @@
 
 # Returns an absolute path for the following file.
 def format
-  @@DIAGRAM_FORMAT ||= 'SVG'
+  @@DIAGRAM_FORMAT ||= 'svg'
 end
 
 def full_path(name = 'test.txt')
