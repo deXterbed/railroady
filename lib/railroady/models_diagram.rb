@@ -39,7 +39,7 @@ class ModelsDiagram < AppDiagram
   def process_class(current_class)
     STDERR.puts "Processing #{current_class}" if @options.verbose
     
-    generated = if current_class.new.is_a?(Mongoid::Document)
+    generated = if defined?(Mongoid::Document) && current_class.new.is_a?(Mongoid::Document)
       process_mongoid_model(current_class)
     elsif current_class.respond_to?'reflect_on_all_associations'
       process_active_record_model(current_class)
@@ -175,11 +175,11 @@ class ModelsDiagram < AppDiagram
     macro = assoc.macro.to_s
     return if %w[belongs_to referenced_in].include?(macro) && !@options.show_belongs_to
 
-    assoc_class_name = if assoc.class_name.respond_to? 'underscore'
-      assoc.class_name.underscore.singularize.camelize
-    else
-      assoc.class_name
-    end
+    #TODO: 
+    # FAIL: assoc.methods.include?(:class_name)
+    # FAIL: assoc.responds_to?(:class_name)
+    assoc_class_name = assoc.class_name rescue nil
+    assoc_class_name ||= assoc.name.to_s.underscore.singularize.camelize
     
     # Only non standard association names needs a label
     
@@ -203,9 +203,10 @@ class ModelsDiagram < AppDiagram
           %w[references_many embeds_many].include?(macro)
       assoc_type = 'one-many'
     else # habtm or has_many, :through
-      return if @habtm.include? [assoc.class_name, class_name, assoc_name]
+      # Add FAKE associations too in order to understand mistakes
+      return if @habtm.include? [assoc_class_name, class_name, assoc_name]
       assoc_type = 'many-many'
-      @habtm << [class_name, assoc.class_name, assoc_name]
+      @habtm << [class_name, assoc_class_name, assoc_name]
     end  
     # from patch #12384    
     # @graph.add_edge [assoc_type, class_name, assoc.class_name, assoc_name]
