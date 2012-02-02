@@ -6,27 +6,6 @@
 
 require 'railroady/diagram_graph'
 
-# camelize and constantize methods brought over from active_support
-class String
-  def camelize(first_letter = :upper)
-    if first_letter == :upper
-      self.to_s.gsub(/\/(.?)/) { "::" + $1.upcase }.gsub(/(^|_)(.)/) { $2.upcase }
-    else
-      self.to_s[0].chr.downcase + self.camelize[1..-1]
-    end
-  end
-  def constantize
-     names = self.split('::')
-     names.shift if names.empty? || names.first.empty?
-  
-     constant = Object
-     names.each do |name|
-       constant = constant.const_defined?(name) ? constant.const_get(name) : constant.const_missing(name)
-     end
-     constant
-   end
-end
-
 # Root class for RailRoady diagrams
 class AppDiagram
 
