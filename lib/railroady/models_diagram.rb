@@ -39,15 +39,18 @@ class ModelsDiagram < AppDiagram
   def process_class(current_class)
     STDERR.puts "Processing #{current_class}" if @options.verbose
 
-    generated = if defined?(Mongoid::Document) && current_class.new.is_a?(Mongoid::Document)
-      process_mongoid_model(current_class)
-    elsif current_class.respond_to?'reflect_on_all_associations'
-      process_active_record_model(current_class)
-    elsif @options.all && (current_class.is_a? Class)
-      process_basic_class(current_class)
-    elsif @options.modules && (current_class.is_a? Module)
-      process_basic_module(current_class)
-    end
+    generated =
+      if defined?(Mongoid::Document) && current_class.new.is_a?(Mongoid::Document)
+        process_mongoid_model(current_class)
+      elsif current_class.new.is_a?(DataMapper::Resource)
+        process_datamapper_model(current_class)
+      elsif current_class.respond_to?'reflect_on_all_associations'
+        process_active_record_model(current_class)
+      elsif @options.all && (current_class.is_a? Class)
+        process_basic_class(current_class)
+      elsif @options.modules && (current_class.is_a? Module)
+        process_basic_module(current_class)
+      end
 
     if @options.inheritance && generated && include_inheritance?(current_class)
       @graph.add_edge ['is-a', current_class.superclass.name, current_class.name]
@@ -119,6 +122,57 @@ class ModelsDiagram < AppDiagram
 
     true
   end
+
+  def process_datamapper_model(current_class)
+    node_attribs = []
+    if @options.brief #|| current_class.abstract_class?
+      node_type = 'model-brief'
+    else
+      node_type = 'model'
+
+      # Collect model's properties
+      props = current_class.properties
+
+      # TODO: Manage magic fields
+
+      props.each do |a|
+        prop = a.name.to_s
+        prop += ' :' + a.class.name.to_s unless @options.hide_types
+        node_attribs << prop
+      end
+    end
+    @graph.add_node [node_type, current_class.name, node_attribs]
+
+    # Process relationships
+    relationships = current_class.relationships
+
+    # TODO: Manage inheritance
+
+    relationships.each do |a|
+      dm_type = a.class.to_s.split('::')[-2]
+      dm_parent_model = a.parent_model
+      dm_child_model = a.child_model
+      STDERR.puts "- Processing DM model relationship #{dm_type} #{dm_child_model} to #{dm_parent_model}" if @options.verbose
+
+      rel_type = ''
+      if dm_type == 'ManyToOne'
+        rel_type = 'one-many'
+      elsif dm_type == 'OneToOne'
+        rel_type = 'one-one'
+      elsif dm_type == 'OneToMany'
+        rel_type = 'has_many'
+      elsif dm_type == 'ManyToMany'
+        rel_type = 'many-many'
+      end
+
+      @graph.add_edge [rel_type, dm_parent_model, dm_child_model, '' ]
+    end
+
+    true
+  end
+
+
+
 
   def process_mongoid_model(current_class)
     node_attribs = []
