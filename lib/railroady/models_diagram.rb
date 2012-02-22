@@ -133,7 +133,14 @@ class ModelsDiagram < AppDiagram
       # Collect model's properties
       props = current_class.properties.sort_by(&:name)
 
-      # TODO: Manage magic fields
+      if @options.hide_magic
+        # From patch #13351
+        # http://wiki.rubyonrails.org/rails/pages/MagicFieldNames
+        magic_fields =
+          ["created_at", "created_on", "updated_at", "updated_on", "lock_version", "_type", "_id",
+           "position", "parent_id", "lft", "rgt", "quote", "template"]
+        props = props.select {|c| !magic_fields.include?(c.name.to_s) }
+      end
 
       props.each do |a|
         prop = a.name.to_s
