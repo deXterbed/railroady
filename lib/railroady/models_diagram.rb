@@ -278,20 +278,13 @@ end # class ModelsDiagram
       assoc_class_name = dm_parent_model
     end
 
-    # TO BE PROPERLY RECODED SINCE IT'S MORE COMPLEX THAN THAT
-    rel_type = ''
-    if dm_type == 'OneToMany'
-      rel_type = 'one-many'
-    elsif dm_type == 'OneToOne'
+    # TO BE IMPROVED
+    rel_type = 'many-many' # default value for ManyToOne and ManyToMany
+    if dm_type == 'OneToOne'
       rel_type = 'one-one'
-    elsif dm_type == 'ManyToOne'
-      rel_type = 'many-many'
-    elsif dm_type == 'ManyToMany'
-      rel_type = 'many-many'
+    elsif dm_type == 'OneToMany'
+      rel_type = 'one-many'
     end
 
-    STDERR.puts "#{rel_type} #{class_name}  #{assoc_class_name} " if @options.verbose
-
-#    @graph.add_edge [assoc_type, class_name, assoc_class_name, assoc_name]
     @graph.add_edge [rel_type, class_name, assoc_class_name, relation.name.to_s ]
   end
