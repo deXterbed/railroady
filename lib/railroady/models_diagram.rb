@@ -42,7 +42,7 @@ class ModelsDiagram < AppDiagram
     generated =
       if defined?(Mongoid::Document) && current_class.new.is_a?(Mongoid::Document)
         process_mongoid_model(current_class)
-      elsif current_class.new.is_a?(DataMapper::Resource)
+      elsif defined?(DataMapper::Resource) && current_class.new.is_a?(DataMapper::Resource)
         process_datamapper_model(current_class)
       elsif current_class.respond_to?'reflect_on_all_associations'
         process_active_record_model(current_class)
