@@ -280,12 +280,12 @@ end # class ModelsDiagram
 
     # TO BE PROPERLY RECODED SINCE IT'S MORE COMPLEX THAN THAT
     rel_type = ''
-    if dm_type == 'ManyToOne'
+    if dm_type == 'OneToMany'
       rel_type = 'one-many'
     elsif dm_type == 'OneToOne'
       rel_type = 'one-one'
-    elsif dm_type == 'OneToMany'
-      rel_type = 'has_many'
+    elsif dm_type == 'ManyToOne'
+      rel_type = 'many-many'
     elsif dm_type == 'ManyToMany'
       rel_type = 'many-many'
     end
