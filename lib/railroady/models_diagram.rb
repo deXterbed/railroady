@@ -131,7 +131,7 @@ class ModelsDiagram < AppDiagram
       node_type = 'model'
 
       # Collect model's properties
-      props = current_class.properties
+      props = current_class.properties.sort_by(&:name)
 
       # TODO: Manage magic fields
 
