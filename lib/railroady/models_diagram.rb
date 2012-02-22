@@ -144,7 +144,7 @@ class ModelsDiagram < AppDiagram
 
       props.each do |a|
         prop = a.name.to_s
-        prop += ' :' + a.class.name.to_s unless @options.hide_types
+        prop += ' :' + a.class.name.split('::').last unless @options.hide_types
         node_attribs << prop
       end
     end
