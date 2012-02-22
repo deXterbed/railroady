@@ -156,23 +156,7 @@ class ModelsDiagram < AppDiagram
     # TODO: Manage inheritance
 
     relationships.each do |a|
-      dm_type = a.class.to_s.split('::')[-2]
-      dm_parent_model = a.parent_model
-      dm_child_model = a.child_model
-      STDERR.puts "- Processing DM model relationship #{dm_type} #{dm_child_model} to #{dm_parent_model}" if @options.verbose
-
-      rel_type = ''
-      if dm_type == 'ManyToOne'
-        rel_type = 'one-many'
-      elsif dm_type == 'OneToOne'
-        rel_type = 'one-one'
-      elsif dm_type == 'OneToMany'
-        rel_type = 'has_many'
-      elsif dm_type == 'ManyToMany'
-        rel_type = 'many-many'
-      end
-
-      @graph.add_edge [rel_type, dm_parent_model, dm_child_model, '' ]
+      process_datamapper_relationship current_class.name, a
     end
 
     true
@@ -274,3 +258,40 @@ class ModelsDiagram < AppDiagram
     @graph.add_edge [assoc_type, class_name, assoc_class_name, assoc_name]
   end # process_association
 end # class ModelsDiagram
+
+  # Process a DataMapper relationship
+  def process_datamapper_relationship(class_name, relation)
+    STDERR.puts "- Processing DataMapper model relationship #{relation.name.to_s}" if @options.verbose
+
+    # Skip "belongs_to" relationships
+    dm_type = relation.class.to_s.split('::')[-2]
+    return if dm_type == 'ManyToOne' && !@options.show_belongs_to
+
+    dm_parent_model = relation.parent_model.to_s
+    dm_child_model = relation.child_model.to_s
+
+    assoc_class_name = ''
+    # Get the assoc_class_name
+    if dm_parent_model.eql?(class_name)
+      assoc_class_name = dm_child_model
+    else
+      assoc_class_name = dm_parent_model
+    end
+
+    # TO BE PROPERLY RECODED SINCE IT'S MORE COMPLEX THAN THAT
+    rel_type = ''
+    if dm_type == 'ManyToOne'
+      rel_type = 'one-many'
+    elsif dm_type == 'OneToOne'
+      rel_type = 'one-one'
+    elsif dm_type == 'OneToMany'
+      rel_type = 'has_many'
+    elsif dm_type == 'ManyToMany'
+      rel_type = 'many-many'
+    end
+
+    STDERR.puts "#{rel_type} #{class_name}  #{assoc_class_name} " if @options.verbose
+
+#    @graph.add_edge [assoc_type, class_name, assoc_class_name, assoc_name]
+    @graph.add_edge [rel_type, class_name, assoc_class_name, relation.name.to_s ]
+  end
