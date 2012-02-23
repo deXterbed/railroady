@@ -278,6 +278,12 @@ end # class ModelsDiagram
       assoc_class_name = dm_parent_model
     end
 
+    # Only non standard association names needs a label
+    assoc_name = ''
+    if !(relation.name.to_s.singularize.camelize.eql?(assoc_class_name.split('::').last))
+      assoc_name = relation.name.to_s
+    end
+
     # TO BE IMPROVED
     rel_type = 'many-many' # default value for ManyToOne and ManyToMany
     if dm_type == 'OneToOne'
@@ -286,5 +292,5 @@ end # class ModelsDiagram
       rel_type = 'one-many'
     end
 
-    @graph.add_edge [rel_type, class_name, assoc_class_name, relation.name.to_s ]
+    @graph.add_edge [rel_type, class_name, assoc_class_name, assoc_name ]
   end
