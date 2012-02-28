@@ -1,6 +1,6 @@
 = RailRoady 
 
-RailRoady generates Rails 3 model (AcitveRecord, Mongoid) and controller UML diagrams as cross-platform .svg files, as well as in the DOT language.
+RailRoady generates Rails 3 model (AcitveRecord, Mongoid, Datamapper) and controller UML diagrams as cross-platform .svg files, as well as in the DOT language.
 
 Code is based on the original "railroad" gem, patched and maintained over the years. Lineage can be traced via GitHub.
 

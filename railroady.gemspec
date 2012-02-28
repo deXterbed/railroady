@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = %q{railroady}
-  s.version = "1.0.6"
+  s.version = "1.0.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Preston Lee", "Tobias Crawley", "Peter Hoeg", "Javier Smaldone"]
   s.date = %q{2012-02-03}
   s.default_executable = %q{railroady}
-  s.description = %q{Ruby on Rails 3 model and controller UML class diagram generator. Originally based on the 'railroad' plugin and contributions of many others. (`sudo port install graphviz` before use!)}
+  s.description = %q{RailRoady is Ruby On Rails 3 model (AcitveRecord, Mongoid, Datamapper) and controller UML diagram generator. Originally based on the 'railroad' plugin and contributions of many others. (`sudo port install graphviz` before use!)}
   s.email = ["conmotto@gmail.com", "tcrawley@gmail.com", "peter@hoeg.com", "p.hoeg@northwind.sg", "javier@smaldone.com.ar"]
   s.executables = ["railroady"]
   s.extra_rdoc_files = [
